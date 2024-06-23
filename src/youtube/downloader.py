@@ -21,6 +21,7 @@ def get_false_download_status_rows(rows, item_count_to_download):
     
     # Calculate actual number of rows to process
     num_rows_to_process = min(item_count_to_download, len(filtered_rows))
+
     return filtered_rows[:num_rows_to_process]
 
 
@@ -78,6 +79,7 @@ def download_youtube_video(item_count_to_download):
         
         # Write all rows
         writer.writerows(rows)
+
 
 def main():
     pass
