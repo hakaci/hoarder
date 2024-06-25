@@ -27,32 +27,48 @@ def get_false_download_status_rows(rows, item_count_to_download):
 
 def get_channels_list_from_csv(rows):
 
-    channel_names = set()
+    # Collect unique channel names using a set to ensure uniqueness
+    channel_names = list({row[2] for row in rows[1:]})
 
-    # Skips the header row
-    rows = rows[1:]
+    # Create the dictionary with channel_names
+    channel_names = {index + 1: channel for index, channel in enumerate(channel_names)}
 
-    # Iterate over each row
-    for row in rows:
-        # download_status is 3th column
-        channel_names.add(row[2])
+    return channel_names
 
-    return list(channel_names)
+def choose_channel(channel_names):
 
+    print("\nAvailable channels:")
+    for index, channel in channel_names.items():
+        print(f"{index}: {channel}")
 
+    while True:
+        try:
+            choice = int(input("\nEnter the number of the channel you want to choose: "))
+            if choice in channel_names:
+                return channel_names[choice]
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+    
 
 def download_youtube_video(item_count_to_download):
-    # get all rows from csv
+    # Get all rows from csv
     rows = get_metadata_csv_list(csv_file_path)
-
-    channel_names = get_channels_list_from_csv(rows)
 
     # Create a list to hold updated rows
     updated_rows = list(rows)
 
-    # get x number of False download status rows
-    filtered_rows = get_false_download_status_rows(rows, item_count_to_download)
+    # Get channel names
+    channel_names = get_channels_list_from_csv(updated_rows)
 
+    choosen_channel_name = choose_channel(channel_names)
+
+    print(choosen_channel_name)
+
+    # # Get x number of False download status rows
+    # filtered_rows = get_false_download_status_rows(rows, item_count_to_download)
 
     # for filtered_row in filtered_rows:
     #     video_id = filtered_row[0]
