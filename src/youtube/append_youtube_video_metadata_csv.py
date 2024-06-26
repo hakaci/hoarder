@@ -2,8 +2,11 @@ import csv
 from utils.youtube_utils import fetch_video_metadata, get_convenient_formats
 from os.path import exists
 
+from src.config import (HOARD_YOUTUVBE_CSV_PATH
+                        )
+
 # CSV file path
-csv_file = r"C:\Users\hakaci-desktop\Videos\downloder_outputs\youtube_download_list.csv"
+csv_file = HOARD_YOUTUVBE_CSV_PATH
 
 # Field names for CSV header
 fieldnames = [

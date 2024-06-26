@@ -3,8 +3,12 @@ import yt_dlp
 from os.path import join
 from utils.file_operation_utils import get_metadata_csv_list
 
-csv_file_path = r"C:\Users\hakaci-desktop\Videos\downloder_outputs\youtube_download_list.csv"
-output_dir = r"C:\Users\hakaci-desktop\Videos\downloder_outputs"
+from src.config import (HOARD_YOUTUVBE_CSV_PATH,
+                        HOARD_YOUTUBE_DOWNLOAD_PATH
+                        )
+
+csv_file_path = HOARD_YOUTUVBE_CSV_PATH
+output_dir = HOARD_YOUTUBE_DOWNLOAD_PATH
 
 
 def get_false_download_status_rows(rows, item_count_to_download):

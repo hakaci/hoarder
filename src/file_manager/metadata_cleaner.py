@@ -2,9 +2,12 @@ import subprocess
 from pathlib import Path
 from os import system
 
+from src.config import (HOARD_PATH,
+                        HOARD_BROKEN_VIDS_PATH
+                        )
 
-real_path = Path(r"C:\Users\hakaci-desktop\Hers\hoard")
-path_broken_vids = Path(r"C:\Users\hakaci-desktop\Hers\hoard\broken_vids")
+real_path = HOARD_PATH
+path_broken_vids = HOARD_BROKEN_VIDS_PATH
 
 # enables ansi escape characters in terminal
 system("")

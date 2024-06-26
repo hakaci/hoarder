@@ -1,16 +1,23 @@
 import subprocess
 from pathlib import Path
 
+from src.config import (HOARD_GIFS_PATH, 
+                        HOARD_IMGS_PATH, 
+                        HOARD_MIX_PATH, 
+                        HOARD_VIDEOS_PATH,
+                        HOARD_BROKEN_VIDS_PATH
+                        )
+
 # Define the folders to search
 paths_to_get = [
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_gifs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_imgs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_mix"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_videos")
+    HOARD_GIFS_PATH,
+    HOARD_IMGS_PATH,
+    HOARD_MIX_PATH,
+    HOARD_VIDEOS_PATH
 ]
 
 # Path for broken videos
-path_broken_vids = Path(r"C:\Users\hakaci-desktop\Hers\hoard\broken_vids")
+path_broken_vids = HOARD_BROKEN_VIDS_PATH
 
 def main():
     """Main function to clear metadata from specified folders."""

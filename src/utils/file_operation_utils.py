@@ -5,19 +5,26 @@ from os.path import getctime, splitext, join, exists, relpath
 from os import makedirs, walk
 from operator import itemgetter
 
+from src.config import (HOARD_GIFS_PATH, 
+                        HOARD_IMGS_PATH, 
+                        HOARD_MIX_PATH, 
+                        HOARD_VIDEOS_PATH,
+                        HOARD_METADATA_CSV_PATH,
+                        HOARD_DROPED_METADATA_CSV_PATH,
+                        HOARD_PATH
+                        )
 
 # Define the folders to search
 paths_to_get = [
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_gifs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_imgs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_mix"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_videos")
+    HOARD_GIFS_PATH,
+    HOARD_IMGS_PATH,
+    HOARD_MIX_PATH,
+    HOARD_VIDEOS_PATH
 ]
 
 # CSV file path
-path_MetadataCSV = Path(r"C:\Users\hakaci-desktop\Hers\hoard\Metadata_static.csv")
-path_DropedMetadataCSV = Path(r"C:\Users\hakaci-desktop\Hers\hoard\Droped_Metadata.csv")
-
+path_MetadataCSV = HOARD_METADATA_CSV_PATH
+path_DropedMetadataCSV = HOARD_DROPED_METADATA_CSV_PATH
 
 extentions_to_get = [".mp4", ".png", ".jpg",
                         ".jpeg", ".webm", ".mov", ".gif", ".webp"]
@@ -50,7 +57,7 @@ def file_search(paths, extentions):
 def lowercase_extentions():  # Lowercase to uppercase extentions like .PNG to .png
 
     # Just start from folder
-    paths = [Path(r"C:\Users\hakaci-desktop\Hers\hoard")]
+    paths = [HOARD_PATH]
 
     # extentions list to lowered
     upper_extentions = [".MP4", ".PNG", ".JPG",

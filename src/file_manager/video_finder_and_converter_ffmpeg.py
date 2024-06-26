@@ -5,18 +5,24 @@ from os import system
 
 import utils.file_operation_utils as u
 
+from src.config import (HOARD_GIFS_PATH, 
+                        HOARD_IMGS_PATH, 
+                        HOARD_MIX_PATH, 
+                        HOARD_VIDEOS_PATH,
+                        HOARD_BROKEN_VIDS_PATH,
+                        HOARD_REENCODED_PATH
+                        )
 
 # Define the folders to search
 paths_to_get = [
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_gifs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_imgs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_mix"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_videos")
+    HOARD_GIFS_PATH,
+    HOARD_IMGS_PATH,
+    HOARD_MIX_PATH,
+    HOARD_VIDEOS_PATH
 ]
 
-path_broken_vids = Path(r"C:\Users\hakaci-desktop\Hers\hoard\broken_vids")
-path_reencoded = Path(
-    r"C:\Users\hakaci-desktop\Hers\hoard\broken_vids\reencoded__clean_this")
+path_broken_vids = HOARD_BROKEN_VIDS_PATH
+path_reencoded = HOARD_REENCODED_PATH
 
 extensitons_to_encode = [".mov", ".webm"]
 

@@ -3,23 +3,31 @@ from os import system
 
 import utils.file_operation_utils as u
 
+from src.config import (HOARD_GIFS_PATH, 
+                        HOARD_IMGS_PATH, 
+                        HOARD_MIX_PATH, 
+                        HOARD_VIDEOS_PATH,
+                        HOARD_METADATA_CSV_PATH,
+                        REVERSE_NAMING_CONST
+                        )
+
 
 # Define the folders to search
 paths_to_get = [
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_gifs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_imgs"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_mix"),
-    Path(r"C:\Users\hakaci-desktop\Hers\hoard\0_videos")
+    HOARD_GIFS_PATH,
+    HOARD_IMGS_PATH,
+    HOARD_MIX_PATH,
+    HOARD_VIDEOS_PATH
 ]
 
 # CSV file path
-path_MetadataCSV = Path(r"C:\Users\hakaci-desktop\Hers\hoard\Metadata_static.csv")
+path_MetadataCSV = HOARD_METADATA_CSV_PATH
 
 extentions_to_rename = [".mp4", ".png", ".jpg",
                         ".jpeg", ".webm", ".mov", ".gif", ".webp"]
 
-# 37th fibonacci number for reverse naming constant
-reverseNamingConst = 24157817
+# Reverse naming constant
+reverseNamingConst = REVERSE_NAMING_CONST
 
 # enables ansi escape characters in terminal
 system("")

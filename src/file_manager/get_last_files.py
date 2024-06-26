@@ -3,12 +3,15 @@ import shutil
 
 import utils.file_operation_utils as u
 
+from src.config import (HOARD_TEMP_PATH,
+                        HOARD_METADATA_CSV_PATH
+                        )
 
 # daily_temp path
-temp_path = Path(r"C:\Users\hakaci-desktop\Hers\hoard\daily_temp")
+temp_path = HOARD_TEMP_PATH
 
 # CSV file path
-path_MetadataCSV = Path(r"C:\Users\hakaci-desktop\Hers\hoard\Metadata_static.csv")
+path_MetadataCSV = HOARD_METADATA_CSV_PATH
 
 extentions_to_get = [".mp4", ".png", ".jpg",
                      ".jpeg", ".webm", ".mov", ".gif", ".webp"]
