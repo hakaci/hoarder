@@ -3,7 +3,7 @@ import yt_dlp
 from os.path import join
 from utils.file_operation_utils import get_metadata_csv_list
 
-from src.config import (HOARD_YOUTUVBE_CSV_PATH,
+from config import (HOARD_YOUTUVBE_CSV_PATH,
                         HOARD_YOUTUBE_DOWNLOAD_PATH
                         )
 

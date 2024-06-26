@@ -3,7 +3,7 @@ from os import system
 
 import utils.file_operation_utils as u
 
-from src.config import (HOARD_GIFS_PATH, 
+from config import (HOARD_GIFS_PATH, 
                         HOARD_IMGS_PATH, 
                         HOARD_MIX_PATH, 
                         HOARD_VIDEOS_PATH,

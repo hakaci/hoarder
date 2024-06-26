@@ -2,7 +2,7 @@ import csv
 from utils.youtube_utils import fetch_video_metadata, get_convenient_formats
 from os.path import exists
 
-from src.config import (HOARD_YOUTUVBE_CSV_PATH
+from config import (HOARD_YOUTUVBE_CSV_PATH
                         )
 
 # CSV file path

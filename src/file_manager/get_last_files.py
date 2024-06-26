@@ -3,7 +3,7 @@ import shutil
 
 import utils.file_operation_utils as u
 
-from src.config import (HOARD_TEMP_PATH,
+from config import (HOARD_TEMP_PATH,
                         HOARD_METADATA_CSV_PATH
                         )
 

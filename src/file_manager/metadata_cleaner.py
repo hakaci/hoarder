@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 from os import system
 
-from src.config import (HOARD_PATH,
+from config import (HOARD_PATH,
                         HOARD_BROKEN_VIDS_PATH
                         )
 

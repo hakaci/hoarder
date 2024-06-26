@@ -5,7 +5,7 @@ from os.path import getctime, splitext, join, exists, relpath
 from os import makedirs, walk
 from operator import itemgetter
 
-from src.config import (HOARD_GIFS_PATH, 
+from config import (HOARD_GIFS_PATH, 
                         HOARD_IMGS_PATH, 
                         HOARD_MIX_PATH, 
                         HOARD_VIDEOS_PATH,
