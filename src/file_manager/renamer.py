@@ -4,12 +4,12 @@ from os import system
 import utils.file_operation_utils as u
 
 from config import (HOARD_GIFS_PATH, 
-                        HOARD_IMGS_PATH, 
-                        HOARD_MIX_PATH, 
-                        HOARD_VIDEOS_PATH,
-                        HOARD_METADATA_CSV_PATH,
-                        REVERSE_NAMING_CONST
-                        )
+                    HOARD_IMGS_PATH, 
+                    HOARD_MIX_PATH, 
+                    HOARD_VIDEOS_PATH,
+                    HOARD_METADATA_CSV_PATH,
+                    REVERSE_NAMING_CONST
+                    )
 
 
 # Define the folders to search

@@ -6,13 +6,13 @@ from os import makedirs, walk
 from operator import itemgetter
 
 from config import (HOARD_GIFS_PATH, 
-                        HOARD_IMGS_PATH, 
-                        HOARD_MIX_PATH, 
-                        HOARD_VIDEOS_PATH,
-                        HOARD_METADATA_CSV_PATH,
-                        HOARD_DROPED_METADATA_CSV_PATH,
-                        HOARD_PATH
-                        )
+                    HOARD_IMGS_PATH, 
+                    HOARD_MIX_PATH, 
+                    HOARD_VIDEOS_PATH,
+                    HOARD_METADATA_CSV_PATH,
+                    HOARD_DROPED_METADATA_CSV_PATH,
+                    HOARD_PATH
+                    )
 
 # Define the folders to search
 paths_to_get = [
@@ -160,7 +160,7 @@ def get_start_unixtimestamp_by_given_day(day):
     days_in_unixtime = float(day) * 86400
 
     # Get creation_date_to_start by subtructing given days
-    utc_now = dt.utcnow()
+    utc_now = dt.now()
     creation_date_to_start = utc_now.timestamp() - days_in_unixtime
 
     return creation_date_to_start

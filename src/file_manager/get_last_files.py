@@ -4,8 +4,8 @@ import shutil
 import utils.file_operation_utils as u
 
 from config import (HOARD_TEMP_PATH,
-                        HOARD_METADATA_CSV_PATH
-                        )
+                    HOARD_METADATA_CSV_PATH
+                    )
 
 # daily_temp path
 temp_path = HOARD_TEMP_PATH

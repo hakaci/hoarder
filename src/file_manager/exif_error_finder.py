@@ -2,11 +2,11 @@ import subprocess
 from pathlib import Path
 
 from config import (HOARD_GIFS_PATH, 
-                        HOARD_IMGS_PATH, 
-                        HOARD_MIX_PATH, 
-                        HOARD_VIDEOS_PATH,
-                        HOARD_BROKEN_VIDS_PATH
-                        )
+                    HOARD_IMGS_PATH, 
+                    HOARD_MIX_PATH, 
+                    HOARD_VIDEOS_PATH,
+                    HOARD_BROKEN_VIDS_PATH
+                    )
 
 # Define the folders to search
 paths_to_get = [

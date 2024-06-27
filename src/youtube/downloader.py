@@ -4,8 +4,8 @@ from os.path import join
 from utils.file_operation_utils import get_metadata_csv_list
 
 from config import (HOARD_YOUTUVBE_CSV_PATH,
-                        HOARD_YOUTUBE_DOWNLOAD_PATH
-                        )
+                    HOARD_YOUTUBE_DOWNLOAD_PATH
+                    )
 
 csv_file_path = HOARD_YOUTUVBE_CSV_PATH
 output_dir = HOARD_YOUTUBE_DOWNLOAD_PATH

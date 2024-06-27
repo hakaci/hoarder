@@ -3,8 +3,8 @@ from pathlib import Path
 from os import system
 
 from config import (HOARD_PATH,
-                        HOARD_BROKEN_VIDS_PATH
-                        )
+                    HOARD_BROKEN_VIDS_PATH
+                    )
 
 real_path = HOARD_PATH
 path_broken_vids = HOARD_BROKEN_VIDS_PATH
