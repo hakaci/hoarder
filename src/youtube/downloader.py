@@ -54,7 +54,7 @@ def choose_channel(channel_names):
 
     
 
-def download_youtube_video(item_count_to_download):
+def download_youtube_video():
     filtered_rows = []
 
     # Get all rows from csv
@@ -70,7 +70,13 @@ def download_youtube_video(item_count_to_download):
     for row in rows[1:]:
         if row[2] == chosen_channel_name:
             filtered_rows.append(row)
-            
+    
+    # Get number of videos to download.       
+    try:
+        item_count_to_download = int(input("\nEnter item count number to download from CSV: "))        
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+          
     # Get x number of False download status rows
     filtered_rows = get_false_download_status_rows(filtered_rows, item_count_to_download)
 

@@ -33,35 +33,20 @@ def main():
             # update file paths and update deleted file rows
             update_metadata_csv()
 
-            encodedFilePaths = ve.main()
+            ve.main()
             newRenamedFilePaths = rn.main()
-            cleanerReturn = mdc.main(newRenamedFilePaths)
-            lfgReturn = lfg.main()
-
-            # print(encodedFilePaths)
-            # print(newRenamedFilePaths)
-            # print(cleanerReturn)
-            # print(lfgReturn)
+            mdc.main(newRenamedFilePaths)
+            lfg.main()
         else:
             exit("\nFile organizer exited")
 
         print("\nFile organizer finished\n")
     elif selected_app == '2':
-        print("\n\033[0;30;47m*******Warning: Single video URL does not support.*******\033[0;0m\n")
+        print("\n\033[0;30;47m*******Warning: This part of code does not support single video URL.*******\033[0;0m\n")
         youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
         yvm.append_youtube_video_metadata_csv(youtube_url)
-        # all_video_metadata = fetch_video_metadata(youtube_url)
-        # if not isinstance(all_video_metadata, list):
-        #     all_video_metadata = [all_video_metadata]
-        # for video_metadata in all_video_metadata:
-        #     print_generic_video_metadata(video_metadata)
     elif selected_app == '3':
-        item_count_to_download = input("\nEnter item count number to download from CSV: ")
-        try:
-            item_count_to_download_integer = int(item_count_to_download)
-            dl.download_youtube_video(item_count_to_download_integer)
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
+        dl.download_youtube_video()
     else:
         print(f"Unknown application: {selected_app}. Available applications: '1', '2' and '3'.")
 
