@@ -6,6 +6,8 @@ from file_manager import get_last_files as lfg
 from youtube import append_youtube_video_metadata_csv as yvm
 from youtube import downloader as dl
 
+from other import convert_mp3_music as cmm
+
 from utils.file_operation_utils import update_metadata_csv
 
 from os import system
@@ -25,7 +27,8 @@ def main():
     print("1. File organizer")
     print("2. Youtube metadata fetcher")
     print("3. Youtube video downloader from CVS file")
-    selected_app = input("\nSelect an application(1 or 2 or 3): ")
+    print("4. Other")
+    selected_app = input("\nSelect an application(1 or 2 or 3 or 4): ")
 
     if selected_app == '1':
         execute_all = input("\nWanna execute all; encoder, renamer, cleaner, last file getter? (Y/N): ")
@@ -39,7 +42,6 @@ def main():
             lfg.main()
         else:
             exit("\nFile organizer exited")
-
         print("\nFile organizer finished\n")
     elif selected_app == '2':
         print("\n\033[0;30;47m*******Warning: This part of code does not support single video URL.*******\033[0;0m\n")
@@ -47,6 +49,8 @@ def main():
         yvm.append_youtube_video_metadata_csv(youtube_url)
     elif selected_app == '3':
         dl.download_youtube_video()
+    elif selected_app == '4':
+        cmm.main()
     else:
         print(f"Unknown application: {selected_app}. Available applications: '1', '2' and '3'.")
 

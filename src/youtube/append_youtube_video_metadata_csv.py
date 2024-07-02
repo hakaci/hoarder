@@ -40,13 +40,10 @@ def write_metadata_to_csv(all_video_metadata):
 
     print(f"\nSuccessfully appended {len(all_video_metadata)} entries to {csv_file}.")
 
-def append_youtube_video_metadata_csv(url):
+def get_relavent_video_infos(video_infos):
     # List to store metadata for each video
-    all_video_metadata = []
-
-    print(f"\nFetching metadata for {url}\n")
-    video_infos = fetch_video_metadata(url)
-
+    all_video_metadata = []    
+    
     for video_info in video_infos:
         video_id = video_info.get('id')
         if not video_id:
@@ -57,10 +54,6 @@ def append_youtube_video_metadata_csv(url):
         first_resolution, first_format_details = next(iter(selected_formats.items()))
         # Extract the format ID from the format details
         selected_format_id = first_format_details['format_id']
-        # # Print selected formats sorted by resolution
-        # print("Selected Formats (Sorted by Resolution - Highest to Lowest):")
-        # for resolution, fmt in video_infos.items():
-        #     print(f"Resolution: {resolution}, Format ID: {fmt['format_id']}, VBR: {fmt['vbr']} kbps, Ext: {fmt['ext']}")
 
         video_metadata = {
             'id': video_id,
@@ -70,8 +63,8 @@ def append_youtube_video_metadata_csv(url):
             'upload_date': video_info.get('upload_date'),
             'timestamp': video_info.get('timestamp'),
             'original_url': video_info.get('original_url'),
-            'download_status': False,  # Placeholder for download status
-            'selected_format_id': selected_format_id,  # Assuming selected_format is already defined
+            'download_status': False,
+            'selected_format_id': selected_format_id,
             'duration': video_info.get('duration'),
             'channel_id': video_info.get('channel_id'),
             'channel_url': video_info.get('channel_url'),
@@ -81,6 +74,15 @@ def append_youtube_video_metadata_csv(url):
             'webpage_url_domain': video_info.get('webpage_url_domain')
         }
         all_video_metadata.append(video_metadata)
+    
+    return all_video_metadata
+
+
+def append_youtube_video_metadata_csv(url):
+    print(f"\nFetching metadata for {url}\n")
+    video_infos = fetch_video_metadata(url)
+
+    all_video_metadata = get_relavent_video_infos(video_infos)
 
     # Append metadata to CSV
     write_metadata_to_csv(all_video_metadata)
