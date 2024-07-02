@@ -90,29 +90,34 @@ def append_youtube_video_metadata_csv():
         print(f"{index}: {URL_type}")
     # Get URL type from user 
     URL_type = input("\nURL type(1 or 2): ")
-            
-    print(URL_type)
-    
+                
     if URL_type == '1':
-        pass
+        # Initialize an empty list to store URLs
+        urls = []
+
+        while True:
+            # Prompt the user for input
+            url = input("Enter a URL (or enter 0 to finish): ")
+
+            # Check if the user entered 0 to stop the input
+            if url == "0":
+                break
+
+            # Append the entered URL to the list
+            urls.append(url)
+        
+        
     elif URL_type == '2':
-        pass
-    # # print("\n\033[0;30;47m*******Warning: This part of code does not support single video URL.*******\033[0;0m\n")
-    # youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
-    
-    # # Get number of videos to download.       
-    # try:
-    #     item_count_to_download = int(input("\nEnter item count number to download from CSV: "))        
-    # except ValueError:
-    #     print("Invalid input. Please enter a valid number.")
-    
-    # print(f"\nFetching metadata for {youtube_url}\n")
-    # video_infos = fetch_video_metadata(youtube_url)
+        youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
+        
+        print(f"\nFetching metadata for {youtube_url}\n")
+        video_infos = fetch_video_metadata(youtube_url)
 
-    # all_video_metadata = get_relavent_video_infos(video_infos)
+        all_video_metadata = get_relavent_video_infos(video_infos)
 
-    # # Append metadata to CSV
-    # append_metadata_to_csv(all_video_metadata)
+        # Append metadata to CSV
+        append_metadata_to_csv(all_video_metadata)
+        
 
 
 def main():
