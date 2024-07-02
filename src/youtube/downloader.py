@@ -28,8 +28,8 @@ def get_false_download_status_rows(rows, item_count_to_download):
 
 def get_channels_list_from_csv(rows):
 
-    # Collect unique channel names using a set to ensure uniqueness
-    channel_names = list({row[2] for row in rows[1:]})
+    # Collect unique channel names using a set to ensure uniqueness and by alphabetical
+    channel_names = sorted({row[2] for row in rows[1:]})
 
     # Create the dictionary with channel_names
     channel_names = {index + 1: channel for index, channel in enumerate(channel_names)}
