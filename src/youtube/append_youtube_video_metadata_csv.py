@@ -93,20 +93,28 @@ def append_youtube_video_metadata_csv():
                 
     if URL_type == '1':
         # Initialize an empty list to store URLs
-        urls = []
+        youtube_urls = []
 
         while True:
             # Prompt the user for input
-            url = input("Enter a URL (or enter 0 to finish): ")
+            youtube_url = input("Enter a URL (or enter 0 to finish): ")
 
             # Check if the user entered 0 to stop the input
-            if url == "0":
+            if youtube_url == "0":
                 break
 
             # Append the entered URL to the list
-            urls.append(url)
+            youtube_urls.append(youtube_url)
+    
+        video_infos = []
+        for youtube_url in youtube_urls:
+            video_infos.append(fetch_video_metadata(youtube_url))
+            
+        all_video_metadata = get_relavent_video_infos(video_infos)
         
-        
+        for video_metadata in all_video_metadata:
+            print(video_metadata)
+    
     elif URL_type == '2':
         youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
         
