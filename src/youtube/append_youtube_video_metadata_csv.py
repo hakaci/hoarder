@@ -112,8 +112,8 @@ def append_youtube_video_metadata_csv():
             
         all_video_metadata = get_relavent_video_infos(video_infos)
         
-        for video_metadata in all_video_metadata:
-            print(video_metadata)
+        # Append metadata to CSV
+        append_metadata_to_csv(all_video_metadata)        
     
     elif URL_type == '2':
         youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
