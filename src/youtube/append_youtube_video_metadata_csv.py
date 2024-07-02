@@ -82,7 +82,7 @@ def get_relavent_video_infos(video_infos):
 def append_youtube_video_metadata_csv():
     
     URL_type_options = {
-        1: "Single videos URL",
+        1: "Single video URLs",
         2: "Youtube playlist URL or Channel video section URL"
     }
     print("\nChoose URL type:")
