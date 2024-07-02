@@ -44,9 +44,7 @@ def main():
             exit("\nFile organizer exited")
         print("\nFile organizer finished\n")
     elif selected_app == '2':
-        print("\n\033[0;30;47m*******Warning: This part of code does not support single video URL.*******\033[0;0m\n")
-        youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
-        yvm.append_youtube_video_metadata_csv(youtube_url)
+        yvm.append_youtube_video_metadata_csv()
     elif selected_app == '3':
         dl.download_youtube_video()
     elif selected_app == '4':
