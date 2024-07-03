@@ -2,6 +2,7 @@ import csv
 import yt_dlp
 from os.path import join
 from utils.file_operation_utils import get_metadata_csv_list
+from utils.youtube_utils import get_channels_list_from_csv, choose_channel, get_false_download_status_rows
 
 from config import (HOARD_YOUTUBE_CSV_PATH,
                     HOARD_YOUTUBE_DOWNLOAD_PATH
@@ -10,49 +11,6 @@ from config import (HOARD_YOUTUBE_CSV_PATH,
 csv_file_path = HOARD_YOUTUBE_CSV_PATH
 output_dir = HOARD_YOUTUBE_DOWNLOAD_PATH
 
-
-def get_false_download_status_rows(rows, item_count_to_download):
-    filtered_rows = []
-
-    # Iterate over each row
-    for row in rows:
-        # Check if download_status is "False" (download_status is 8th column)
-        if row[7] == "False":
-            filtered_rows.append(row)
-    
-    # Calculate actual number of rows to process
-    num_rows_to_process = min(item_count_to_download, len(filtered_rows))
-
-    return filtered_rows[:num_rows_to_process]
-
-
-def get_channels_list_from_csv(rows):
-
-    # Collect unique channel names using a set to ensure uniqueness and by alphabetical
-    channel_names = sorted({row[2] for row in rows[1:]})
-
-    # Create the dictionary with channel_names
-    channel_names = {index + 1: channel for index, channel in enumerate(channel_names)}
-
-    return channel_names
-
-def choose_channel(channel_names):
-
-    print("\nAvailable channels:")
-    for index, channel in channel_names.items():
-        print(f"{index}: {channel}")
-
-    while True:
-        try:
-            choice = int(input("\nEnter the number of the channel you want to choose: "))
-            if choice in channel_names:
-                return channel_names[choice]
-            else:
-                print("Invalid choice. Please try again.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-
-    
 
 def download_youtube_video():
     filtered_rows = []

@@ -1,5 +1,5 @@
 import csv
-from utils.youtube_utils import fetch_video_metadata, get_convenient_formats, update_with_new_rows
+from utils.youtube_utils import fetch_video_metadata, update_with_new_rows, get_relavent_video_infos
 from os.path import exists
 
 from config import (HOARD_YOUTUBE_CSV_PATH
@@ -39,44 +39,6 @@ def append_metadata_to_csv(all_video_metadata):
             csv_writer.writerow(video_metadata)
 
     print(f"\nSuccessfully appended {len(all_video_metadata)} entries to {csv_file_path}.")
-
-
-def get_relavent_video_infos(video_infos):
-    # List to store metadata for each video
-    all_video_metadata = []    
-    
-    for video_info in video_infos:
-        video_id = video_info.get('id')
-        if not video_id:
-            continue  # Skip if video ID is not available
-        
-        selected_formats = get_convenient_formats(video_info.get('formats'))
-        # Get the first key-value pair (resolution and format details)
-        first_resolution, first_format_details = next(iter(selected_formats.items()))
-        # Extract the format ID from the format details
-        selected_format_id = first_format_details['format_id']
-
-        video_metadata = {
-            'id': video_id,
-            'title': video_info.get('title'),
-            'channel': video_info.get('channel'),
-            'duration_string': video_info.get('duration_string'),
-            'upload_date': video_info.get('upload_date'),
-            'timestamp': video_info.get('timestamp'),
-            'original_url': video_info.get('original_url'),
-            'download_status': False,
-            'selected_format_id': selected_format_id,
-            'duration': video_info.get('duration'),
-            'channel_id': video_info.get('channel_id'),
-            'channel_url': video_info.get('channel_url'),
-            'uploader': video_info.get('uploader'),
-            'uploader_id': video_info.get('uploader_id'),
-            'uploader_url': video_info.get('uploader_url'),
-            'webpage_url_domain': video_info.get('webpage_url_domain')
-        }
-        all_video_metadata.append(video_metadata)
-    
-    return all_video_metadata
 
 
 def append_youtube_video_metadata_csv():

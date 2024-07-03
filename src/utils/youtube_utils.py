@@ -200,6 +200,87 @@ def fetch_video_metadata(channel_url):
             return None
 
 
+def get_false_download_status_rows(rows, item_count_to_download):
+    filtered_rows = []
+
+    # Iterate over each row
+    for row in rows:
+        # Check if download_status is "False" (download_status is 8th column)
+        if row[7] == "False":
+            filtered_rows.append(row)
+    
+    # Calculate actual number of rows to process
+    num_rows_to_process = min(item_count_to_download, len(filtered_rows))
+
+    return filtered_rows[:num_rows_to_process]
+
+
+def get_channels_list_from_csv(rows):
+
+    # Collect unique channel names using a set to ensure uniqueness and by alphabetical
+    channel_names = sorted({row[2] for row in rows[1:]})
+
+    # Create the dictionary with channel_names
+    channel_names = {index + 1: channel for index, channel in enumerate(channel_names)}
+
+    return channel_names
+
+
+def choose_channel(channel_names):
+
+    print("\nAvailable channels:")
+    for index, channel in channel_names.items():
+        print(f"{index}: {channel}")
+
+    while True:
+        try:
+            choice = int(input("\nEnter the number of the channel you want to choose: "))
+            if choice in channel_names:
+                return channel_names[choice]
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
+def get_relavent_video_infos(video_infos):
+    # List to store metadata for each video
+    all_video_metadata = []    
+    
+    for video_info in video_infos:
+        video_id = video_info.get('id')
+        if not video_id:
+            continue  # Skip if video ID is not available
+        
+        selected_formats = get_convenient_formats(video_info.get('formats'))
+        # Get the first key-value pair (resolution and format details)
+        first_resolution, first_format_details = next(iter(selected_formats.items()))
+        # Extract the format ID from the format details
+        selected_format_id = first_format_details['format_id']
+
+        video_metadata = {
+            'id': video_id,
+            'title': video_info.get('title'),
+            'channel': video_info.get('channel'),
+            'duration_string': video_info.get('duration_string'),
+            'upload_date': video_info.get('upload_date'),
+            'timestamp': video_info.get('timestamp'),
+            'original_url': video_info.get('original_url'),
+            'download_status': False,
+            'selected_format_id': selected_format_id,
+            'duration': video_info.get('duration'),
+            'channel_id': video_info.get('channel_id'),
+            'channel_url': video_info.get('channel_url'),
+            'uploader': video_info.get('uploader'),
+            'uploader_id': video_info.get('uploader_id'),
+            'uploader_url': video_info.get('uploader_url'),
+            'webpage_url_domain': video_info.get('webpage_url_domain')
+        }
+        all_video_metadata.append(video_metadata)
+    
+    return all_video_metadata
+
+
 def main():
     channel_url = "https://www.youtube.com/c/MF%C3%87mefsoft/videos"
     video_url = "https://www.youtube.com/watch?v=ATVj1VAxcMo"
