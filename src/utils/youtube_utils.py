@@ -1,5 +1,11 @@
 from os import path, makedirs
 import yt_dlp
+from utils.file_operation_utils import get_metadata_csv_list
+from config import (HOARD_YOUTUBE_CSV_PATH
+                    )
+
+# CSV file path
+csv_file_path = HOARD_YOUTUBE_CSV_PATH
 
 
 def get_convenient_formats(formats):
@@ -114,6 +120,26 @@ def list_video_info_fields(video_info):
     print("Available fields in video_info:")
     for key in video_info.keys():
         print(key)
+
+
+def update_with_new_rows(new_rows):
+    # Get rows
+    updated_rows = get_metadata_csv_list(csv_file_path)
+    # Collect existing video IDs
+    existing_ids = {row[0] for row in updated_rows[1:]}
+    
+    # Add or update rows based on new_rows
+    for new_row in new_rows:
+        new_row = list(new_row.values())
+        new_id = new_row[0]
+        if new_id in existing_ids:
+            for index, row in enumerate(updated_rows):
+                if row[0] == new_id:
+                    updated_rows[index] = new_row  # Update the existing row
+        else:
+            updated_rows.append(new_row)  # Add new row
+                    
+    return updated_rows
 
 
 def download_video(url, output_dir):

@@ -1,12 +1,12 @@
 import csv
-from utils.youtube_utils import fetch_video_metadata, get_convenient_formats
+from utils.youtube_utils import fetch_video_metadata, get_convenient_formats, update_with_new_rows
 from os.path import exists
 
-from config import (HOARD_YOUTUVBE_CSV_PATH
+from config import (HOARD_YOUTUBE_CSV_PATH
                     )
 
 # CSV file path
-csv_file = HOARD_YOUTUVBE_CSV_PATH
+csv_file_path = HOARD_YOUTUBE_CSV_PATH
 
 # Field names for CSV header
 fieldnames = [
@@ -20,14 +20,14 @@ fieldnames = [
 def append_metadata_to_csv(all_video_metadata):
 
     # Check if the CSV file exists, create it with header if it doesn't
-    if not exists(csv_file):
-        with open(csv_file, 'w', newline='', encoding='utf-8') as file:
+    if not exists(csv_file_path):
+        with open(csv_file_path, 'w', newline='', encoding='utf-8') as file:
             csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
             csv_writer.writeheader()
 
 
     # Open the CSV file in append mode and initialize the CSV writer
-    with open(csv_file, 'a', newline='', encoding='utf-8') as file:
+    with open(csv_file_path, 'a', newline='', encoding='utf-8') as file:
         csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
 
         # If the file is empty, write the header row
@@ -38,7 +38,7 @@ def append_metadata_to_csv(all_video_metadata):
         for video_metadata in all_video_metadata:
             csv_writer.writerow(video_metadata)
 
-    print(f"\nSuccessfully appended {len(all_video_metadata)} entries to {csv_file}.")
+    print(f"\nSuccessfully appended {len(all_video_metadata)} entries to {csv_file_path}.")
 
 
 def get_relavent_video_infos(video_infos):
@@ -111,9 +111,15 @@ def append_youtube_video_metadata_csv():
             video_infos.append(fetch_video_metadata(youtube_url))
             
         all_video_metadata = get_relavent_video_infos(video_infos)
+                
+        updated_rows = update_with_new_rows(all_video_metadata)
         
-        # Append metadata to CSV
-        append_metadata_to_csv(all_video_metadata)        
+        # Write the updated metadata back to the CSV file
+        with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(updated_rows)
+        
+        print(f"\nSuccessfully appended/updated {len(updated_rows)} entries to {csv_file_path}.")        
     
     elif URL_type == '2':
         youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")
@@ -126,7 +132,6 @@ def append_youtube_video_metadata_csv():
         # Append metadata to CSV
         append_metadata_to_csv(all_video_metadata)
         
-
 
 def main():
     pass
