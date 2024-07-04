@@ -1,5 +1,5 @@
 import csv
-from utils.youtube_utils import fetch_video_metadata, update_with_new_rows, get_relavent_video_infos
+from utils.youtube_utils import fetch_video_metadata, get_relavent_video_infos
 from os.path import exists
 
 from config import (HOARD_YOUTUBE_CSV_PATH
@@ -10,10 +10,7 @@ csv_file_path = HOARD_YOUTUBE_CSV_PATH
 
 # Field names for CSV header
 fieldnames = [
-    'id', 'title', 'channel', 'duration_string', 'upload_date', 'timestamp',
-    'original_url', 'download_status', 'selected_format_id', 'duration',
-    'channel_id', 'channel_url', 'uploader', 'uploader_id', 'uploader_url',
-    'webpage_url_domain'
+    'id', 'title', 'channel', 'timestamp', 'download_status', 'duration', 'channel_id'
 ]
 
 
@@ -73,15 +70,9 @@ def append_youtube_video_metadata_csv():
             video_infos.append(fetch_video_metadata(youtube_url))
             
         all_video_metadata = get_relavent_video_infos(video_infos)
-                
-        updated_rows = update_with_new_rows(all_video_metadata)
         
-        # Write the updated metadata back to the CSV file
-        with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerows(updated_rows)
-        
-        print(f"\nSuccessfully appended/updated {len(updated_rows)} entries to {csv_file_path}.")        
+        # Append metadata to CSV
+        append_metadata_to_csv(all_video_metadata)       
     
     elif URL_type == '2':
         youtube_url = input("\nEnter youtube playlist URL or Channel video section URL: ")

@@ -251,30 +251,15 @@ def get_relavent_video_infos(video_infos):
         video_id = video_info.get('id')
         if not video_id:
             continue  # Skip if video ID is not available
-        
-        selected_formats = get_convenient_formats(video_info.get('formats'))
-        # Get the first key-value pair (resolution and format details)
-        first_resolution, first_format_details = next(iter(selected_formats.items()))
-        # Extract the format ID from the format details
-        selected_format_id = first_format_details['format_id']
 
         video_metadata = {
             'id': video_id,
             'title': video_info.get('title'),
             'channel': video_info.get('channel'),
-            'duration_string': video_info.get('duration_string'),
-            'upload_date': video_info.get('upload_date'),
             'timestamp': video_info.get('timestamp'),
-            'original_url': video_info.get('original_url'),
             'download_status': False,
-            'selected_format_id': selected_format_id,
             'duration': video_info.get('duration'),
-            'channel_id': video_info.get('channel_id'),
-            'channel_url': video_info.get('channel_url'),
-            'uploader': video_info.get('uploader'),
-            'uploader_id': video_info.get('uploader_id'),
-            'uploader_url': video_info.get('uploader_url'),
-            'webpage_url_domain': video_info.get('webpage_url_domain')
+            'channel_id': video_info.get('channel_id')
         }
         all_video_metadata.append(video_metadata)
     
