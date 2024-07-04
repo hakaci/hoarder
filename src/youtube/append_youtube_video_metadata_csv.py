@@ -15,7 +15,6 @@ fieldnames = [
 
 
 def append_metadata_to_csv(all_video_metadata):
-
     # Check if the CSV file exists, create it with header if it doesn't
     if not exists(csv_file_path):
         with open(csv_file_path, 'w', newline='', encoding='utf-8') as file:

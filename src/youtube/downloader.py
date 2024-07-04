@@ -2,7 +2,10 @@ import csv
 import yt_dlp
 from os.path import join
 from utils.file_operation_utils import get_metadata_csv_list
-from utils.youtube_utils import get_channels_list_from_csv, choose_channel, get_false_download_status_rows
+from utils.youtube_utils import (get_channels_list_from_csv, 
+                                 choose_channel, 
+                                 get_false_download_status_rows
+                                 )
 
 from config import (HOARD_YOUTUBE_CSV_PATH,
                     HOARD_YOUTUBE_DOWNLOAD_PATH
@@ -40,17 +43,11 @@ def download_youtube_video():
 
     for filtered_row in filtered_rows:
         video_id = filtered_row[0]
-        video_format_id = filtered_row[8]
 
-        # Define the options for yt-dlp
+        # Define options for yt-dlp
         ydl_opts = {
-            'format': f'{video_format_id}+bestaudio[ext=m4a]/bestaudio',  # Specify the format ID and audio codec
+            'format_sort': ['ext', 'res:1080', '+vbr'],
             'outtmpl': join(output_dir, f'%(timestamp)s - %(title)s - %(channel)s.%(ext)s'),  # Output template for downloaded file
-            # 'merge_output_format': 'mp4',
-            # 'postprocessors': [{
-            #     'key': 'FFmpegVideoConvertor',
-            #     'preferedformat': 'mp4'
-            # }]
         }
 
         # Initialize YoutubeDL object
@@ -62,23 +59,18 @@ def download_youtube_video():
                 # Download the video using the URL
                 ydl.download([video_url])
                 print(f"\nSuccessfully downloaded video with ID: {video_id}\n")
+                
                 # Iterate over each row in CSV rows
                 for index, row in enumerate(rows):
                     if row[0] == video_id:
                         # Found the matching ID, mark download_status as True
-                        rows[index][7] = True
+                        rows[index][4] = True
             except Exception as e:
                 print(f"\nFailed to download video with ID: {row[0]}. Error: {e}\n")
         
-    header = rows[0]  # First element is the header
-    rows = rows[1:]   # Remaining elements are rows
-    
-    # Write updated_rows to the CSV file
+    # Write updated rows to the CSV file
     with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        
-        # Write the header
-        writer.writerow(header)
         
         # Write all rows
         writer.writerows(rows)

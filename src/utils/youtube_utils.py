@@ -205,8 +205,8 @@ def get_false_download_status_rows(rows, item_count_to_download):
 
     # Iterate over each row
     for row in rows:
-        # Check if download_status is "False" (download_status is 8th column)
-        if row[7] == "False":
+        # Check if download_status is "False" (download_status is 5th column)
+        if row[4] == "False":
             filtered_rows.append(row)
     
     # Calculate actual number of rows to process
