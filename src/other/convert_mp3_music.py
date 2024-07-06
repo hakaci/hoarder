@@ -62,39 +62,27 @@ def main():
 
     music_folder_path = input("\nEnter folder absolute path: ")
 
-    # # Create folders and subfolder in temporaty folder
-    # u.copy_folders_to_another_folder(music_folder_path, temp_path)
-
-    # # Get extentions names. (Dont forget to edit extentions_to_get varible)
-    # u.print_extension_types(music_folder_path)
-    
     files = file_search([music_folder_path], extentions_to_get)
     
-    # Prepare the data to write to the CSV
-    data_to_write = []
-    for file in files:
-        path = Path(file)
-        file_name = path.name
-        data_to_write.append([file_name])
+    # Read converted file names from the CSV file
+    converted_file_names = set()
+    with open(csv_file_path, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip the header
+        for row in reader:
+            converted_file_names.add(row[0])
 
-    for data in data_to_write:
-        print(data)
-        
-    # Define the CSV header
-    header = ["File Name"]
-
-    # Write the data to the CSV file
-    with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        
-        # Write the header
-        writer.writerow(header)
-        
-        # Write the data
-        writer.writerows(data_to_write)
-
-    print(f"Data written to {csv_file_path}")
-
+    # Get file names from searched file paths
+    file_names = [Path(file).name for file in files]
+    
+    # Subtract converted file names from searched file names to get new file names
+    new_file_names = set(file_names) - converted_file_names
+    
+    # Print new file names
+    print("New file names names:")
+    for file_name in new_file_names:
+        print(file_name)
+    
     # # check if there are any files to convert
     # if files:
     #     encode_to_mp3(files)
