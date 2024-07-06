@@ -69,12 +69,37 @@ def main():
     # u.print_extension_types(music_folder_path)
     
     files = file_search([music_folder_path], extentions_to_get)
+    
+    # Prepare the data to write to the CSV
+    data_to_write = []
+    for file in files:
+        path = Path(file)
+        file_name = path.name
+        data_to_write.append([file_name])
 
-    # check if there are any files to convert
-    if files:
-        encode_to_mp3(files)
-    else:
-        print("\n\033[0;30;47mNo files to convert\n\033[0;0m\n")
+    for data in data_to_write:
+        print(data)
+        
+    # Define the CSV header
+    header = ["File Name"]
+
+    # Write the data to the CSV file
+    with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        
+        # Write the header
+        writer.writerow(header)
+        
+        # Write the data
+        writer.writerows(data_to_write)
+
+    print(f"Data written to {csv_file_path}")
+
+    # # check if there are any files to convert
+    # if files:
+    #     encode_to_mp3(files)
+    # else:
+    #     print("\n\033[0;30;47mNo files to convert\n\033[0;0m\n")
 
     print("\nMP3 converter finished\n")
 
