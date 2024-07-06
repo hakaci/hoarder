@@ -14,7 +14,8 @@ csv_file_path = CONVERT_MP3_CSV_PATH
 temp_path = CONVERT_MP3_OUTPUT_PATH
 
 extentions_to_get = [".mp4", ".webm", ".mp3"]
-
+# Define the CSV header
+header = ["File Name"]
 
 # enables ansi escape characters in terminal
 system("")  
@@ -78,10 +79,14 @@ def main():
     # Subtract converted file names from searched file names to get new file names
     new_file_names = set(file_names) - converted_file_names
     
-    # Print new file names
-    print("New file names names:")
-    for file_name in new_file_names:
-        print(file_name)
+    # Get absolute paths from new file names
+    file_path_dict = {Path(file_path).name: file_path for file_path in files}  # Create a dictionary mapping file names to their absolute paths
+    new_file_paths = [file_path_dict[file_name] for file_name in new_file_names if file_name in file_path_dict] # Retrieve the absolute paths using the actual new file names
+    
+    # Print absolute paths of new files
+    print("Absolute paths of new files:")
+    for new_file_path in new_file_paths:
+        print(new_file_path)
     
     # # check if there are any files to convert
     # if files:
