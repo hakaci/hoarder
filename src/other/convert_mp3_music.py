@@ -1,44 +1,26 @@
 import subprocess
+import csv
 from pathlib import Path
 from os import makedirs, system
 from os.path import dirname, basename, exists
 
-
 from utils.file_operation_utils import file_search
 
+from config import (CONVERT_MP3_CSV_PATH,
+                    CONVERT_MP3_OUTPUT_PATH
+                    )
+
+csv_file_path = CONVERT_MP3_CSV_PATH
+temp_path = CONVERT_MP3_OUTPUT_PATH
 
 extentions_to_get = [".mp4", ".webm", ".mp3"]
 
-temp_path = r"C:\Users\hakaci-desktop\Music\_convert_mp3_temp"
 
 # enables ansi escape characters in terminal
 system("")  
 
-def main():
-
-    print("\n\033[0;30;47m*******Warning: Don't forget to CLOSE media that going to process.*******\033[0;0m\n")
-
-    music_folder_path = input("\nEnter folder absolute path: ")
-
-    # # Create folders and subfolder in temporaty folder
-    # u.copy_folders_to_another_folder(music_folder_path, temp_path)
-
-    # # Get extentions names. (Dont forget to edit extentions_to_get varible)
-    # u.print_extension_types(music_folder_path)
-    
-    files = file_search([music_folder_path], extentions_to_get)
-
-    # check if there are any files to convert
-    if files:
-        encode_to_mp3(files)
-    else:
-        print("\n\033[0;30;47mNo files to convert\n\033[0;0m\n")
-
-    print("\nMP3 converter finished\n")
-  
 
 def encode_to_mp3(files):
-
     for file in files:
 
         # Get new file name with new suffix
@@ -72,6 +54,30 @@ def encode_to_mp3(files):
             # Remove file if error (sometimes ffmpeg creates a corrupted/empty file)
             if output_path.exists():
                 output_path.unlink()
+
+
+def main():
+
+    print("\n\033[0;30;47m*******Warning: Don't forget to CLOSE media that going to process.*******\033[0;0m\n")
+
+    music_folder_path = input("\nEnter folder absolute path: ")
+
+    # # Create folders and subfolder in temporaty folder
+    # u.copy_folders_to_another_folder(music_folder_path, temp_path)
+
+    # # Get extentions names. (Dont forget to edit extentions_to_get varible)
+    # u.print_extension_types(music_folder_path)
+    
+    files = file_search([music_folder_path], extentions_to_get)
+
+    # check if there are any files to convert
+    if files:
+        encode_to_mp3(files)
+    else:
+        print("\n\033[0;30;47mNo files to convert\n\033[0;0m\n")
+
+    print("\nMP3 converter finished\n")
+
 
 if __name__ == "__main__":
     main()

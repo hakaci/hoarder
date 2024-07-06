@@ -220,8 +220,6 @@ def get_channels_list_from_csv(rows):
     # Collect unique channel names using a set to ensure uniqueness and by alphabetical
     channel_names = sorted({row[2] for row in rows[1:] if row[4] == 'False'})
 
-    print(channel_names)
-
     # Create the dictionary with channel_names
     channel_names = {index + 1: channel for index, channel in enumerate(channel_names)}
 
