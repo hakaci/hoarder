@@ -20,6 +20,7 @@ header = ["File Name"]
 # enables ansi escape characters in terminal
 system("")  
 
+
 def get_new_file_paths(files):
     # Read converted file names from the CSV file
     converted_file_names = set()
@@ -40,6 +41,7 @@ def get_new_file_paths(files):
     new_file_paths = [file_path_dict[file_name] for file_name in new_file_names if file_name in file_path_dict] # Retrieve absolute paths using new file names
     
     return new_file_paths
+
 
 def encode_to_mp3(files):
     successfully_converted_file_paths = []
@@ -80,6 +82,7 @@ def encode_to_mp3(files):
                 output_path.unlink()
 
     return successfully_converted_file_paths
+
 
 def main():
 
