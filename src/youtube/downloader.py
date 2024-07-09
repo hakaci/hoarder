@@ -66,7 +66,7 @@ def download_youtube_video():
                         # Found the matching ID, mark download_status as True
                         rows[index][4] = True
             except Exception as e:
-                print(f"\nFailed to download video with ID: {row[0]}. Error: {e}\n")
+                print(f"\nFailed to download video with ID: {video_id}. Error: {e}\n")
         
     # Write updated rows to the CSV file
     with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
