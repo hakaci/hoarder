@@ -24,7 +24,7 @@ paths_to_get = [
 path_broken_vids = HOARD_BROKEN_VIDS_PATH
 path_reencoded = HOARD_REENCODED_PATH
 
-extensitons_to_encode = [".mov", ".webm"]
+extensitons_to_encode = [".mov", ".webm", ".mkv"]
 
 # enables ansi escape characters in terminal
 system("") 
