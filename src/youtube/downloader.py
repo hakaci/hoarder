@@ -47,7 +47,7 @@ def download_youtube_video():
         # Define options for yt-dlp
         ydl_opts = {
             'format_sort': ['ext', 'res:1080', '+vbr'],
-            'outtmpl': join(output_dir, f'%(timestamp)s - %(title)s - %(channel)s.%(ext)s'),  # Output template for downloaded file
+            'outtmpl': join(output_dir, f'%(upload_date)s - %(title)s - %(channel)s.%(ext)s'),  # Output template for downloaded file
         }
 
         # Initialize YoutubeDL object
