@@ -49,8 +49,8 @@ def main():
     elif selected_app == '3':
         dl.download_youtube_video()
     elif selected_app == '4':
-        # cmm.main()
-        rs.main()
+        cmm.main()
+        # rs.main()
     else:
         print(f"Unknown application: {selected_app}. Available applications: '1', '2' and '3'.")
 

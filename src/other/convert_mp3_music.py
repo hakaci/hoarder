@@ -21,6 +21,19 @@ header = ["File Name"]
 system("")  
 
 
+def update_music_name_csv(folder_path):
+    files = file_search([folder_path], extentions_to_get)
+    # Get file names from searched file paths
+    file_names = [Path(file).name for file in files]
+    
+    with open(CONVERT_MP3_CSV_PATH, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        
+        for file_name in file_names:
+            writer.writerow([file_name])
+
+
 def get_new_file_paths(files):
     # Read converted file names from the CSV file
     converted_file_names = set()
@@ -89,9 +102,11 @@ def main():
     print("\n\033[0;30;47m*******Warning: Don't forget to CLOSE media that going to process.*******\033[0;0m\n")
 
     music_folder_path = input("\nEnter folder absolute path: ")
-
-    files = file_search([music_folder_path], extentions_to_get)
     
+    # update_music_name_csv(music_folder_path)
+    
+    files = file_search([music_folder_path], extentions_to_get)
+
     new_file_paths = get_new_file_paths(files)
     
     # Check if there are any files to convert
