@@ -7,6 +7,7 @@ from youtube import append_youtube_video_metadata_csv as yvm
 from youtube import downloader as dl
 
 from other import convert_mp3_music as cmm
+from other import replace_string as rs
 
 from utils.file_operation_utils import update_metadata_csv
 
@@ -48,7 +49,8 @@ def main():
     elif selected_app == '3':
         dl.download_youtube_video()
     elif selected_app == '4':
-        cmm.main()
+        # cmm.main()
+        rs.main()
     else:
         print(f"Unknown application: {selected_app}. Available applications: '1', '2' and '3'.")
 
