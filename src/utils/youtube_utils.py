@@ -267,9 +267,9 @@ def get_relavent_video_infos(video_infos):
 
 
 def main():
-    channel_url = "https://www.youtube.com/c/MF%C3%87mefsoft/videos"
-    video_url = "https://www.youtube.com/watch?v=ATVj1VAxcMo"
-    output_dir = r"C:\Users\hakaci-desktop\Videos\downloder_outputs"
+    channel_url = "-"
+    video_url = "-"
+    output_dir = r"-"
 
     # Fetch and print video metadata
     metadata = fetch_video_metadata(channel_url)
