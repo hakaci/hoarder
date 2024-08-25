@@ -1,10 +1,10 @@
 import csv
 import yt_dlp
 from os.path import join
-from utils.file_operation_utils import get_metadata_csv_list
 from utils.youtube_utils import (get_channels_list_from_csv, 
                                  choose_channel, 
-                                 get_false_download_status_rows
+                                 get_false_download_status_rows,
+                                 get_metadata_csv_list
                                  )
 
 from config import (HOARD_YOUTUBE_CSV_PATH,

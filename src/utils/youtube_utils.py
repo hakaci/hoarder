@@ -1,6 +1,6 @@
 from os import path, makedirs
 import yt_dlp
-from utils.file_operation_utils import get_metadata_csv_list
+from csv import reader
 from config import (HOARD_YOUTUBE_CSV_PATH
                     )
 
@@ -55,6 +55,16 @@ def get_lowest_bitrate_format(formats):
             selected_format = fmt
     
     return selected_format
+
+
+def get_metadata_csv_list(path):
+    # Open metadata CSV file
+    with open(path, newline="", encoding="utf-8") as metadataCSVfile:
+
+        # get file reader object
+        allMetadataRows = reader(metadataCSVfile, delimiter=",")     
+
+        return list(allMetadataRows)
 
 
 def print_video_metadata(video_url):
