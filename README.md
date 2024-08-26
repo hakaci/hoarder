@@ -1,8 +1,6 @@
 # hoarder
 ## How to run
 - Python 3.11.2
-- Before running get:
-  - exiftool, ffmpeg, ffprobe, ffplay executables in your PATH
 - Open command prompt with AP
 - cd to project directory
 - run venv:
