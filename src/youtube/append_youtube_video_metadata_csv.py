@@ -1,5 +1,5 @@
 import csv
-from utils.youtube_utils import fetch_video_metadata, get_relavent_video_infos
+from utils.youtube_utils import fetch_video_metadata, get_relevant_video_infos
 from os.path import exists
 
 from config import (HOARD_YOUTUBE_CSV_PATH
@@ -68,7 +68,7 @@ def append_youtube_video_metadata_csv():
         for youtube_url in youtube_urls:
             video_infos.append(fetch_video_metadata(youtube_url))
             
-        all_video_metadata = get_relavent_video_infos(video_infos)
+        all_video_metadata = get_relevant_video_infos(video_infos)
         
         # Append metadata to CSV
         append_metadata_to_csv(all_video_metadata)       
@@ -79,7 +79,7 @@ def append_youtube_video_metadata_csv():
         print(f"\nFetching metadata for {youtube_url}\n")
         video_infos = fetch_video_metadata(youtube_url)
 
-        all_video_metadata = get_relavent_video_infos(video_infos)
+        all_video_metadata = get_relevant_video_infos(video_infos)
 
         # Append metadata to CSV
         append_metadata_to_csv(all_video_metadata)

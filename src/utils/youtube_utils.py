@@ -253,7 +253,7 @@ def choose_channel(channel_names):
             print("Invalid input. Please enter a number.")
 
 
-def get_relavent_video_infos(video_infos):
+def get_relevant_video_infos(video_infos):
     # List to store metadata for each video
     all_video_metadata = []    
     
